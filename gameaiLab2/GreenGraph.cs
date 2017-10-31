@@ -5,7 +5,6 @@ class GreenGraph : Graph {
    
    // List of nodes in this graph
    private List<Node> nodes;
-
    // An adjacency matrix, recording edges between nodes
    // Edges FROM node i are recorded in adjMatrix[i]
    // Edge FROM node i to node j is recorded in adjMatrix[i][j]
@@ -19,12 +18,15 @@ class GreenGraph : Graph {
    }
    public void AddNode(Node a){
         nodes.Add(a);
-    }
+        
+        adjMatrix.Add(new List<int>(0)); 
+   
+   }
    public void AddEdge(Node a, Node b, int c){
-        adjMatrix[a.GetHashCode()][b.GetHashCode()]= c;
-    
-       
-
+            
+        int n = nodes.IndexOf(a);
+        int m = nodes.IndexOf(b);
+        adjMatrix.insert(n, adjMatrix.insert(m, c));
        
        
    }
@@ -33,10 +35,9 @@ class GreenGraph : Graph {
    }
     
    public List<Node> Neighbours(Node a){
-       neighbours = new List<Node>();
+       n = new List<Node>();
        
-       
-       return neighbours;
+       return n;
        
    }
    public int Cost(Node a,Node b){
