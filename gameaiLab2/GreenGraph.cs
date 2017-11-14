@@ -17,16 +17,26 @@ class GreenGraph : Graph {
       adjMatrix = new List<List<int>>();
    }
    public void AddNode(Node a){
+       int count = 0;
         nodes.Add(a);
-        
-        adjMatrix.Add(new List<int>(0)); 
-   
+        adjMatrix.Add(new List<int>(nodes.Count));
+        foreach (List<int> myList in adjMatrix){
+            count++;
+            int diff = nodes.Count - myList.Count;
+            if (diff != 0){
+                for (int i = 0; i < diff; i++){
+                    adjMatrix[count-1].Add(0);
+                }
+            }
+        }
+
+
    }
    public void AddEdge(Node a, Node b, int c){
             
         int n = nodes.IndexOf(a);
         int m = nodes.IndexOf(b);
-        adjMatrix.insert(n, adjMatrix.insert(m, c));
+        adjMatrix[n].Insert(m, c);
        
        
    }
@@ -35,13 +45,21 @@ class GreenGraph : Graph {
    }
     
    public List<Node> Neighbours(Node a){
-       n = new List<Node>();
-       
-       return n;
+      List<Node> neighbours = new List<Node>();
+		for(int i = 0; i < nodes.Count - 1; i ++){
+			int n = adjMatrix[nodes.IndexOf(a)][i];
+			if (n != 0){
+				neighbours.Add(nodes[i]);
+			}
+		}
+		return neighbours;
+        
+
        
    }
    public int Cost(Node a,Node b){
-       return adjMatrix[a.GetHashCode()][b.GetHashCode()];
+       return adjMatrix[nodes.IndexOf(a)][nodes.IndexOf(b)];
+       
    }
 
 

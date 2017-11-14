@@ -72,12 +72,11 @@ public class AStar : Pathfinder {
             bool visitedBefore = cost.ContainsKey(next);
 
             // New node OR cheaper path to known node
-            if (!visitedBefore ||  nextCost < cost[next]) {
+            if (!visitedBefore ) {
                // Add it to the frontier
-               frontier.Enqueue(next, nextCost + Distance(next, goal));
+               frontier.Enqueue(next);
                // Record how we got to next and it's cost
                previous[next] = current;
-               cost[next] = nextCost;
             }
          }
       }
