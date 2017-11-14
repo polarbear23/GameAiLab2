@@ -4,7 +4,7 @@ using System.Collections.Generic;
 /*
  * An A* Pathfinder
  */
-public class AStar : Pathfinder {
+public class BreadthFirst : Pathfinder {
 
    private Graph                    graph;
    private PriorityQueue            frontier;
